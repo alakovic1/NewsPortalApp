@@ -2,48 +2,57 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import { Input, FormText } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import "./TabularView.css";
 
+const useStyles = makeStyles({
+  table: {
+    minWidth: 500,
+  },
+});
+
+function createData(title, picture, details) {
+  return { title, picture, details};
+}
+
 export default function AddNews() {
-  const [title, setTitle] = useState("");
-  const [details, setDetails] = useState("");
-
-  const history = useHistory();
-  	const navigateTo = () => history.push('/homePageAdmin');
-
-  function validateForm() {
-    return title.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const classes = useStyles();
+  const rows = [
+    createData('Frozen yoghurt', 159, 6.0),
+  ];
 
   return (
-    <div className="AddNews">
-      <form onSubmit={handleSubmit}>
-        <p class="title">Add some new news</p>
-        <FormGroup className="newsTitle">
-          <ControlLabel for="exampleFile">Chose a picture for your news</ControlLabel>
-          <Input type="file" name="file" id="exampleFile" />
-        </FormGroup>
-        <FormGroup className="newsTitle" controlId="email" bsSize="large">
-          <ControlLabel className="label">Title:</ControlLabel>
-          <Input 
-            type="textarea"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup className="newsTitle" controlId="password" bsSize="large">
-          <ControlLabel className="label2">Details: </ControlLabel>
-          <Input type="textarea" 
-            value={details}
-            onChange={e => setDetails(e.target.value)}
-          />
-        </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit" className="add-button" onClick={navigateTo}> Add </Button>
-      </form>
+    <div className="TableView">
+      <p class="text">List of all the news you've added and edited:</p>
+      <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Title</TableCell>
+            <TableCell align="right">Picture</TableCell>
+            <TableCell align="right">Details</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.title}>
+              <TableCell component="th" scope="row">
+                {row.title}
+              </TableCell>
+              <TableCell align="right">{row.picture}</TableCell>
+              <TableCell align="right">{row.details}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
     </div>
   );
 }
