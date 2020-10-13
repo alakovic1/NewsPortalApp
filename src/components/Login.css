@@ -1,0 +1,48 @@
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+    background-color: #b84dff;
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 17%;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .username{
+    margin-left: 15%;
+    margin-top: 13%;
+  }
+
+  .usernameLabel{
+    margin-right: 5%;
+  }
+
+  .title{
+    margin: 0 auto;
+    margin-left: 10%;
+    color: white;
+    font-style: italic;
+    position: absolute;
+    font-size: 22px;
+  }
+
+  .login-button{
+    margin-top: 10%;
+    margin-left: 40%;
+    border: 2px solid #4B0082;
+    background-color: white;
+    color: #4B0082;
+    padding: 10px 25px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  body{
+    background: url("backround.jpg");
+    background-size: 100%;
+  }
+}
