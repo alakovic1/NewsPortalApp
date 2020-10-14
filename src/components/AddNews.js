@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import { Input, FormText } from "reactstrap";
 import { useHistory } from "react-router-dom";
@@ -9,7 +10,6 @@ export default function AddNews() {
   const [details, setDetails] = useState("");
 
   const history = useHistory();
-  	const navigateTo = () => history.push('/homePageAdmin');
 
   function validateForm() {
     return title.length > 0;
@@ -18,6 +18,20 @@ export default function AddNews() {
   function handleSubmit(event) {
     event.preventDefault();
   }
+  const addOnClick = () => {
+  //add news
+  axios.post('http://localhost:8080/api/news/add', {
+    id: 1,
+    picture: "picture111",
+    title: title,
+    details: details
+  }).then(res => {
+    console.log(res.data.message);
+    history.push('/homePageAdmin');
+  }).catch(error => {
+    console.log(error);
+  });
+}
 
   return (
     <div className="AddNews">
@@ -42,7 +56,7 @@ export default function AddNews() {
             onChange={e => setDetails(e.target.value)}
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit" className="add-button" onClick={navigateTo}> Add </Button>
+        <Button block bsSize="large" disabled={!validateForm()} onClick={addOnClick} type="submit" className="add-button"> Add </Button>
       </form>
     </div>
   );

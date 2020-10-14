@@ -11,8 +11,8 @@ export default function Login() {
   const navigateTo = () => history.push('/homePageAdmin');
 
   function validateForm() {
-    if(username != "admin") return false;
-    if(password != "admin") return false;
+    if(username !== "admin") return false;
+    if(password !== "admin") return false;
     return username.length > 0 && password.length > 0;
   }
 

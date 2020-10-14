@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import { Input, FormText } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import React from "react";
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,6 +25,23 @@ export default function AddNews() {
   const rows = [
     createData('Frozen yoghurt', 159, 6.0),
   ];
+
+  //get all news from database -- for some reason not working :(
+  axios.get('http://localhost:8080/api/news/all')
+        .then(response => {
+            for (const [, value] of response.data.entries()) {
+                let q = {
+                    picture: value.picture,
+                    title: value.title,
+                    details: value.details
+                };
+                rows.push(q);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        
 
   return (
     <div className="TableView">

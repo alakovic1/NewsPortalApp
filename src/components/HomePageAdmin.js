@@ -1,10 +1,28 @@
 import React from "react";
+import axios from 'axios';
 import { useHistory, Link } from "react-router-dom";
 import "./HomePageAdmin.css";
 
 export default function HomePageAdmin() {
 	const history = useHistory();
-  	const navigateTo = () => history.push('/');
+	  const navigateTo = () => history.push('/');
+	  
+	  const news = [];
+	  //get all news from database -- for some reason not working :(
+		axios.get('http://localhost:8080/api/news/all')
+		.then(response => {
+		for (const [, value] of response.data.entries()) {
+			let q = {
+				picture: value.picture,
+				title: value.title,
+				details: value.details
+			};
+			news.push(q);
+		}
+	})
+	.catch(error => {
+		console.log(error);
+	});
 
   return(
   	<body>
