@@ -23,7 +23,7 @@ export default function Login() {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <p class="title">Login for Admin Privileges</p>
+        <p class="title">Run as Administrator</p>
         <FormGroup className="username" controlId="email" bsSize="large">
           <ControlLabel className="usernameLabel">Username:</ControlLabel>
           <FormControl

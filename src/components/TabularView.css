@@ -37,7 +37,11 @@
   }
 
   body{
-    background: url("backround.jpg");
+  background-image: url("backround.jpg");
     background-size: 100%;
+  }
+
+  .search{
+      margin-left: 20%;
   }
 }

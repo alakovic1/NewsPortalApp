@@ -3,7 +3,7 @@
     padding: 60px 0;
     background-color: #b84dff;
     width: 500px;
-    height: 200px;
+    height: 270px;
     margin: 0 auto;
     margin-top: 17%;
   }
@@ -42,7 +42,7 @@
     cursor: pointer;
   }
   body{
-    background: url("backround.jpg");
+  background-image: url("backround.jpg");
     background-size: 100%;
   }
 }

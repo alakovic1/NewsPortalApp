@@ -9,21 +9,23 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import "./TabularView.css";
+import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 500,
+    minWidth: 20,
   },
 });
 
-function createData(title, picture, details) {
-  return { title, picture, details};
+function createData(title, details) {
+  return { title, details};
 }
 
 export default function AddNews() {
   const classes = useStyles();
   const rows = [
-    createData('Frozen yoghurt', 159, 6.0),
+    createData("Novi rekord u BiH: Na koronavirus pozitivne još 482 osobe", "U protekla 24 sata u Bosni i Hercegovini zaraza koronavirusom je potvrđena kod još 482 osobe. Preminulo je 11 osoba."),
+    createData("Alonso vozio Renaultov bolid u Barceloni: Nije se lako vratiti, ali osjećaj je sjajan", "Iskusni španski vozač Fernando Alonso ponovo je sjeo u bolid Formule 1, ovog puta za upravljač Renaulta."),
   ];
 
   //get all news from database -- for some reason not working :(
@@ -51,7 +53,6 @@ export default function AddNews() {
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>
-            <TableCell align="right">Picture</TableCell>
             <TableCell align="right">Details</TableCell>
           </TableRow>
         </TableHead>
@@ -61,13 +62,22 @@ export default function AddNews() {
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell align="right">{row.picture}</TableCell>
               <TableCell align="right">{row.details}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    <div class="search">
+    <FormGroup className="username" controlId="email" bsSize="large">
+          <ControlLabel className="usernameLabel">Search:</ControlLabel>
+          <FormControl
+            autoFocus
+            type="text"
+          />
+          <Button>Confirm</Button>
+      </FormGroup>
+    </div>
     </div>
   );
 }
